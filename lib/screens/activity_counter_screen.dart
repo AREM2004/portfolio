@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/app_settings.dart';
 import '../widgets/primary_button.dart';
 
-/// Activity 1: Counter screen connected to global state (increments here or when adding notes).
+
 class ActivityCounterScreen extends StatelessWidget {
   const ActivityCounterScreen({super.key});
 
@@ -13,9 +13,7 @@ class ActivityCounterScreen extends StatelessWidget {
     final settings = context.watch<AppSettings>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Activity 1: Counter Activity'),
-      ),
+      appBar: AppBar(),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {

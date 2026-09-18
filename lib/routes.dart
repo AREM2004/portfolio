@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'screens/activity_counter_screen.dart';
+import 'screens/activity_network_monitor_screen.dart';
 import 'screens/activity_notes_screen.dart';
 import 'screens/home_dashboard.dart';
 import 'screens/settings_screen.dart';
@@ -31,11 +32,13 @@ class AppRoutes {
   static const String home = '/';
   static const String activityOne = '/activity/counter';
   static const String activityTwo = '/activity/notes';
+  static const String activityThree = '/activity/network-monitor';
   static const String settings = '/settings';
 
   // Compatibility aliases
   static const String counterActivity = activityOne;
   static const String notesActivity = activityTwo;
+  static const String networkMonitorActivity = activityThree;
 
   /// Compilation catalog of all activity screens in the project.
   static const List<ActivityItem> compilationActivities = [
@@ -59,6 +62,17 @@ class AppRoutes {
       route: activityTwo,
       tags: ['TextEditingController', 'ListView', 'Forms'],
     ),
+    ActivityItem(
+      number: 'Activity 3',
+      title: 'Network Monitor',
+      subtitle:
+          'Real-time stream listener, resilient request queueing & graceful recovery.',
+      description:
+          'Monitors active connection interfaces (Wi-Fi, Cellular, Offline), queues long-running requests during handover or disconnects, and auto-retries upon reconnection.',
+      icon: Icons.sensors_rounded,
+      route: activityThree,
+      tags: ['connectivity_plus', 'Streams', 'Queuing', 'Auto-Recovery'],
+    ),
   ];
 
   /// Standard route builder map.
@@ -66,6 +80,7 @@ class AppRoutes {
         home: (_) => const HomeDashboard(),
         activityOne: (_) => const ActivityCounterScreen(),
         activityTwo: (_) => const ActivityNotesScreen(),
+        activityThree: (_) => const ActivityNetworkMonitorScreen(),
         settings: (_) => const SettingsScreen(),
       };
 

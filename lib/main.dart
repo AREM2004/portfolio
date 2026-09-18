@@ -3,11 +3,15 @@ import 'package:provider/provider.dart';
 
 import 'app.dart';
 import 'providers/app_settings.dart';
+import 'providers/network_monitor_provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => AppSettings(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AppSettings()),
+        ChangeNotifierProvider(create: (_) => NetworkMonitorProvider()),
+      ],
       child: const PortfolioApp(),
     ),
   );

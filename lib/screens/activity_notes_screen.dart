@@ -39,7 +39,7 @@ class _ActivityNotesScreenState extends State<ActivityNotesScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Activity 2: Notes Activity'),
+
       ),
       body: SafeArea(
         child: Padding(
@@ -69,7 +69,7 @@ class _ActivityNotesScreenState extends State<ActivityNotesScreen> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      'Activities Compilation • Activity 2',
+                      'Persistent notes',
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                           ),

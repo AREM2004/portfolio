@@ -45,24 +45,6 @@ class DashboardCard extends StatelessWidget {
                     ),
                     child: Icon(icon, size: 28, color: scheme.onPrimaryContainer),
                   ),
-                  if (activityNumber != null)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: scheme.secondaryContainer,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        activityNumber!,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: scheme.onSecondaryContainer,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ),
                 ],
               ),
               const SizedBox(height: 16),
@@ -101,16 +83,21 @@ class DashboardCard extends StatelessWidget {
               ],
               const SizedBox(height: 12),
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    'Open Activity',
-                    style: TextStyle(
-                      color: scheme.primary,
-                      fontWeight: FontWeight.w600,
+                  Flexible(
+                    child: Text(
+                      'Open Activity',
+                      style: TextStyle(
+                        color: scheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(width: 4),
-                  Icon(Icons.arrow_forward_rounded, size: 16, color: scheme.primary),
+                  Icon(Icons.arrow_forward_rounded,
+                      size: 16, color: scheme.primary),
                 ],
               ),
             ],

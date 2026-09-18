@@ -25,7 +25,7 @@ class HomeDashboard extends StatelessWidget {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final wide = constraints.maxWidth >= 700;
+            final wide = constraints.maxWidth >= 650;
             final padding = constraints.maxWidth >= 900 ? 32.0 : 16.0;
 
             final activityCards = AppRoutes.compilationActivities.map((activity) {
@@ -62,13 +62,6 @@ class HomeDashboard extends StatelessWidget {
                               ),
                         ),
                       ),
-                      Chip(
-                        label: Text(
-                          '${AppRoutes.compilationActivities.length} Activities',
-                          style: const TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                        visualDensity: VisualDensity.compact,
-                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -80,18 +73,27 @@ class HomeDashboard extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   if (wide)
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: activityCards
-                          .map(
-                            (card) => Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 12.0),
-                                child: card,
-                              ),
-                            ),
-                          )
-                          .toList(),
+                    LayoutBuilder(
+                      builder: (context, cardConstraints) {
+                        final columns = cardConstraints.maxWidth >= 950 ? 3 : 2;
+                        const spacing = 12.0;
+                        final cardWidth = (cardConstraints.maxWidth -
+                                (columns - 1) * spacing) /
+                            columns;
+
+                        return Wrap(
+                          spacing: spacing,
+                          runSpacing: spacing,
+                          children: activityCards
+                              .map(
+                                (card) => SizedBox(
+                                  width: cardWidth,
+                                  child: card,
+                                ),
+                              )
+                              .toList(),
+                        );
+                      },
                     )
                   else
                     Column(

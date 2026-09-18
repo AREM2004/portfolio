@@ -4,11 +4,18 @@ import 'package:provider/provider.dart';
 
 import 'package:flutter_portfolio/app.dart';
 import 'package:flutter_portfolio/providers/app_settings.dart';
+import 'package:flutter_portfolio/providers/network_monitor_provider.dart';
 import 'package:flutter_portfolio/routes.dart';
 
-Widget _buildApp({AppSettings? settings}) {
-  return ChangeNotifierProvider(
-    create: (_) => settings ?? AppSettings(),
+Widget _buildApp({
+  AppSettings? settings,
+  NetworkMonitorProvider? monitor,
+}) {
+  return MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => settings ?? AppSettings()),
+      ChangeNotifierProvider(create: (_) => monitor ?? NetworkMonitorProvider()),
+    ],
     child: const PortfolioApp(),
   );
 }
@@ -25,8 +32,10 @@ void main() {
     expect(find.text('Activities Compilation'), findsOneWidget);
     expect(find.text('Counter Activity'), findsOneWidget);
     expect(find.text('Notes Activity'), findsOneWidget);
+    expect(find.text('Network Monitor'), findsOneWidget);
     expect(find.text('Activity 1'), findsOneWidget);
     expect(find.text('Activity 2'), findsOneWidget);
+    expect(find.text('Activity 3'), findsOneWidget);
   });
 
   testWidgets('navigation route to Activity 1 Counter operates increment/decrement',
